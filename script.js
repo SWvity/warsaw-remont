@@ -33,11 +33,11 @@ document.getElementById('year').textContent = new Date().getFullYear();
 document.getElementById('contactForm').addEventListener('submit', (event) => {
   event.preventDefault();
   const data = new FormData(event.currentTarget);
-  const subject = encodeURIComponent('Zapytanie o remont — WARSAW REMONT');
   const body = encodeURIComponent(
-    `Imię i nazwisko: ${data.get('name')}\nKontakt: ${data.get('contact')}\n\nWiadomość:\n${data.get('message')}`
+    `Zapytanie o remont — WARSAW REMONT\nImię i nazwisko: ${data.get('name')}\nKontakt: ${data.get('contact')}\n\nWiadomość: ${data.get('message')}`
   );
-  // Zmień ten adres na prawdziwy adres e-mail firmy.
-  window.location.href = `mailto:eugene.voevutko@gmail.com?subject=${subject}&body=${body}`;
-  document.getElementById('formStatus').textContent = 'Otwieramy aplikację pocztową. Jeśli nic się nie stało, napisz do nas bezpośrednio.';
+  const phone = '+48519465199';
+  // Otwiera aplikację SMS; klient musi sam nacisnąć przycisk Wyślij.
+  window.location.href = `sms:${phone}?body=${body}`;
+  document.getElementById('formStatus').textContent = 'Otwieramy aplikację SMS z przygotowaną wiadomością. Sprawdź ją i naciśnij „Wyślij”.';
 });
